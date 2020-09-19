@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% if title %}
+            {% block title %}{% endblock title %}
+        {% else %}
+            AJAX & JSON - CRUD
+        {% endif %}
+    </title>
+    <!-- Font Awesome, Bootstrap, MDB CSS -->
+    <link rel="stylesheet" href="{% static 'crud/font awsome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'crud/bootstrap-4.4.1-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'crud/MDB-Free_4.19.1/css/mdb.min.css' %}">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="{% static 'crud/MDB-Free_4.19.1/css/addons/datatables.min.css' %}">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'crud/custom/style/style.css' %}">
+    {% block custom_style %}{% endblock custom_style %}
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS, MDB JS -->
+    <!-- the slim build of jQuery excludes the ajax and effects modules -->
+    <script src="{% static 'crud/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'crud/popper.min.js' %}"></script>
+    <script src="{% static 'crud/bootstrap-4.4.1-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'crud/MDB-Free_4.19.1/css/mdb.min.css' %}"></script>
+
+    <!-- DataTables JS-->
+    <script src="{% static 'crud/MDB-Free_4.19.1/js/addons/datatables.min.js' %}"></script>
+    <script src="{% static 'crud/MDB-Free_4.19.1/js/plugins/moment.min.js' %}"></script>
+    <script src="{% static 'crud/MDB-Free_4.19.1/js/plugins/datetime-moment.js' %}"></script>
+
+    <!-- Custom JS -->
+    <script src="{% static 'crud/custom/script/script.js' %}"></script>
+    {% block custom_script %}{% endblock custom_script %}
+    
+    <script>
+        $(document).ready(function() {
+            // add date sorting for "Mon date, Year" & "Mon Year" formats
+            $.fn.dataTable.moment( ['ll', 'MMM, YYYY'] );
+            $('#table_id').dataTable( {
+                // Disable ordering on columns which have a class of 'nosort'
+                "columnDefs": [ {
+                    "targets": 'nosort',
+                    "orderable": false
+                }],
+                // Change values of show entries & set the dafault length of items per page
+                "aLengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]],
+                "pageLength": 5,
+            } );
+        })
+    </script>
+</body>
+</html>

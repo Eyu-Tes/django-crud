@@ -1,0 +1,20 @@
+:root {
+    --font-primary: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body{
+    font-family: var(--font-primary);
+}
+
+th {
+    font-size: 1.15rem !important;
+}
+
+div.dataTables_wrapper div.dataTables_filter input[type=search] {
+    border-radius: 15px !important;
+}
+
+input, button, select {
+    box-shadow: none !important;
+    outline: none !important;
+}

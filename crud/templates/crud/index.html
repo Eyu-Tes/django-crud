@@ -1,0 +1,46 @@
+{% extends 'crud/base.html' %}
+
+{% block title %}Product List Page{% endblock title %}
+
+{% block custom_style %}{% endblock custom_style %}
+
+{% block content %}
+    <div class="col-md-12">
+        <h4>Django CRUD - AJAX & JSON</h4>
+        <a class="btn btn-primary" href="#"><i class="fas fa-plus mr-2"></i> Add Product</a>
+        <table  id="table_id" class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Product Code</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Date Added</th>
+                    <th class="nosort">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{product.product_code}}</td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.category}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.quantity}}</td>
+                        <td>{{product.date_added | date:"M, Y"}}</td>
+                        <td>
+                            <a class="btn btn-warning btn-sm mb-1" href="#"><i class="fas fa-pencil-alt"></i></a>
+                            <a class="btn btn-danger btn-sm mb-1" href="#"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
+
+
+{% block custom_script %}{% endblock custom_script %}
