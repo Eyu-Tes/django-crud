@@ -6,15 +6,37 @@ body{
     font-family: var(--font-primary);
 }
 
-th {
-    font-size: 1.15rem !important;
-}
-
-div.dataTables_wrapper div.dataTables_filter input[type=search] {
-    border-radius: 15px !important;
-}
-
 input, button, select {
     box-shadow: none !important;
     outline: none !important;
+}
+
+/* increase table header font size */
+.table th {
+    font-size: 1.15rem !important;
+}
+/* reduce padding on table data */
+.table td {
+    padding: .5rem !important;
+}
+
+/* remove border radius from datatables controls */
+div.dataTables_wrapper div.dataTables_filter input[type=search], 
+div.dataTables_wrapper div.dataTables_length select {
+    border-radius: 0px !important;
+    border-width: 2px;
+}
+/* add border color to search input */
+div.dataTables_wrapper div.dataTables_filter input[type=search] {
+    border-color: #00c851;
+}
+/* add border-color and transition to search input during focused state */
+div.dataTables_wrapper div.dataTables_filter input[type=search]:focus {
+    transition: .5s;
+    border-color: #000 !important;
+}
+
+/* removes double scrollbar on browser when modal is called */
+body.modal-open {
+    overflow: hidden;
 }

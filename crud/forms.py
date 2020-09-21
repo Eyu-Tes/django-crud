@@ -8,9 +8,9 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = ['product_code', 'name', 'price', 'quantity', 'category']
         widgets = {
-            'product_code': forms.TextInput(attrs={'class': 'form-control'}),
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'price': forms.NumberInput(attrs={'class': 'form-control'}),
-            'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
-            'category': forms.Select(attrs={'class': 'form-control'})
+            'product_code': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'name': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control form-control-sm'}),
+            'quantity': forms.NumberInput(attrs={'class': 'form-control form-control-sm'}),
+            'category': forms.Select(attrs={'class': 'form-control form-control-sm'})
         }

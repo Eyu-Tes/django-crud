@@ -1,0 +1,16 @@
+<form method="post" action="{% url 'crud:product_delete' product.id %}" class="js-delete-form">
+  {% csrf_token %}
+  <div class="modal-header">
+    <h5 class="modal-title">Confirm Product Deletion</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p class="lead">Are you sure you want to delete product: <span style="color: #f44336;">{{ product.name }}</span> ?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary btn-md" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-danger btn-md">Delete</button>
+  </div>
+</form>

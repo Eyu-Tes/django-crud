@@ -1,14 +1,14 @@
 {% extends 'crud/base.html' %}
 
-{% block title %}Product List Page{% endblock title %}
-
-{% block custom_style %}{% endblock custom_style %}
+{% load static %}
 
 {% block content %}
     <div class="col-md-12">
-        <h4>Django CRUD - AJAX & JSON</h4>
-        <a class="btn btn-primary" href="#"><i class="fas fa-plus mr-2"></i> Add Product</a>
-        <table  id="table_id" class="table">
+        <h4>Django CRUD - AJAX, JSON, &amp; Datatables</h4>
+        <button class="btn btn-primary btn-md mt-5 mb-4 js-create">
+            <i class="fas fa-plus mr-2"></i> Add New Record
+        </button>
+        <table  id="table_id" class="table table-striped">
             <thead>
                 <tr>
                     <th>#</th>
@@ -23,7 +23,7 @@
             </thead>
             <tbody>
                 {% for product in products %}
-                    <tr>
+                    <tr id="product-{{product.id}}">
                         <td>{{forloop.counter}}</td>
                         <td>{{product.product_code}}</td>
                         <td>{{product.name}}</td>
@@ -32,15 +32,26 @@
                         <td>{{product.quantity}}</td>
                         <td>{{product.date_added | date:"M, Y"}}</td>
                         <td>
-                            <a class="btn btn-warning btn-sm mb-1" href="#"><i class="fas fa-pencil-alt"></i></a>
-                            <a class="btn btn-danger btn-sm mb-1" href="#"><i class="fas fa-trash"></i></a>
+                            <btn class="btn btn-warning btn-sm mb-1" onClick=updateRecord({{product.id}})>
+                                <i class="fas fa-pencil-alt"></i>
+                                <span class="tooltiptext">Edit</span>
+                            </btn>
+                            <btn class="btn btn-danger btn-sm mb-1" onClick=deleteRecord({{product.id}})>
+                                <i class="fas fa-trash"></i>
+                                <span class="tooltiptext">Remove</span>
+                            </btn>
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock content %}
-
-
-{% block custom_script %}{% endblock custom_script %}

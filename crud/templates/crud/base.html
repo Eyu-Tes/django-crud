@@ -9,7 +9,7 @@
         {% if title %}
             {% block title %}{% endblock title %}
         {% else %}
-            AJAX & JSON - CRUD
+            AJAX, JSON, &amp; Datatables - CRUD
         {% endif %}
     </title>
     <!-- Font Awesome, Bootstrap, MDB CSS -->
@@ -22,10 +22,11 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'crud/custom/style/style.css' %}">
+    <link rel="stylesheet" href="{% static 'crud/custom/style/tooltip-style.css' %}">
     {% block custom_style %}{% endblock custom_style %}
 </head>
 <body>
-    <div class="container">
+    <div class="container my-3">
         <div class="row">
             {% block content %}
             {% endblock content %}
@@ -49,20 +50,7 @@
     {% block custom_script %}{% endblock custom_script %}
     
     <script>
-        $(document).ready(function() {
-            // add date sorting for "Mon date, Year" & "Mon Year" formats
-            $.fn.dataTable.moment( ['ll', 'MMM, YYYY'] );
-            $('#table_id').dataTable( {
-                // Disable ordering on columns which have a class of 'nosort'
-                "columnDefs": [ {
-                    "targets": 'nosort',
-                    "orderable": false
-                }],
-                // Change values of show entries & set the dafault length of items per page
-                "aLengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]],
-                "pageLength": 5,
-            } );
-        })
+
     </script>
 </body>
 </html>
