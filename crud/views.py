@@ -37,7 +37,6 @@ def save_product(request, form):
     date_added_clean_str = date_added.strftime("%b, %Y")
     # set cleaned date value
     product['fields']['date_added'] = date_added_clean_str
-    messages.success(request, 'Product added successfully!')
     return product
 
 
@@ -49,6 +48,7 @@ def product_create(request):
             data['form_is_valid'] = True
             # call the save_product function
             data['obj'] = save_product(request, form)
+            messages.success(request, 'Product added successfully!')
             # reset form after successful creation
             form = ProductForm()
     else:
@@ -72,6 +72,7 @@ def product_update(request, pk):
             if form.has_changed():
                 # call the save_product function
                 data['obj'] = save_product(request, form)
+                messages.success(request, 'Product edited successfully!')
                 data['form_has_changed'] = True
     else:
         form = ProductForm(instance=product_obj)
